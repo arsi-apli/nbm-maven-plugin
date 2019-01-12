@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>nbm-maven-plugin</artifactId>
-    <version>4.1</version>
+    <version>4.1-NBANDROID</version>
     <packaging>maven-plugin</packaging>
 
     <name>NBM Maven Plugin</name>
@@ -30,6 +30,13 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+    <distributionManagement> 
+        <repository> 
+            <id>bintray-nbandroidteam-nbm-maven-plugin</id> 
+            <name>nbandroidteam-nbm-maven-plugin</name> 
+            <url>https://api.bintray.com/maven/nbandroidteam/nbm-maven-plugin/org.codehaus.mojo.nbm-maven-plugin/;publish=1</url> 
+        </repository> 
+    </distributionManagement>
     <scm>
         <connection>scm:git:https://github.com/mojohaus/nbm-maven-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/mojohaus/nbm-maven-plugin.git</developerConnection>
@@ -84,13 +91,13 @@
     <build>
         <plugins>
             <plugin>
-   <!-- TODO need to override parent version value... I suppose this will eventually end up in mojo parent pom, check regularly -->
+                <!-- TODO need to override parent version value... I suppose this will eventually end up in mojo parent pom, check regularly -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>3.4</version>
                 <configuration>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-                 </configuration>
+                </configuration>
                 <executions>
                     <execution>
                         <id>mojo-descriptor</id>
@@ -154,7 +161,7 @@
                     <execution>
                         <phase>package</phase>
                         <goals>
-                           <goal>check</goal>
+                            <goal>check</goal>
                         </goals>
                         <configuration>
                             <signature>

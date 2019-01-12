@@ -22,7 +22,8 @@ import java.util.StringTokenizer;
 import java.util.TimeZone;
 
 /**
- *  will try to convert the maven version number to a NetBeans friendly version number.
+ * will try to convert the maven version number to a NetBeans friendly version number.
+ *
  * @author <a href="mailto:mkleint@codehaus.org">Milos Kleint</a>
  *
  */
@@ -64,9 +65,22 @@ public class AdaptNbVersion
                 if ( token.indexOf( '-' ) > 0 )
                 {
                     token = token.substring( 0, token.indexOf( '-' ) );
-                } else if ( token.indexOf( '_' ) > 0 )
+                    token = token + "." + generateSnapshotValue( date );
+                    if ( toReturn.length() != 0 )
+                    {
+                        toReturn.append( "." );
+                    }
+                    toReturn.append( token );
+                }
+                else if ( token.indexOf( '_' ) > 0 )
                 {
                     token = token.substring( 0, token.indexOf( '_' ) );
+                    token = token + "." + generateSnapshotValue( date );
+                    if ( toReturn.length() != 0 )
+                    {
+                        toReturn.append( "." );
+                    }
+                    toReturn.append( token );
                 }
                 try
                 {
@@ -98,7 +112,7 @@ public class AdaptNbVersion
 
     private static String generateSnapshotValue( Date date )
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyyMMdd" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "yyMMddHHmm" );
         dateFormat.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
         return dateFormat.format( date );
     }
