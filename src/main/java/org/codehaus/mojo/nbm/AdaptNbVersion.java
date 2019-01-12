@@ -112,7 +112,7 @@ public class AdaptNbVersion
 
     private static String generateSnapshotValue( Date date )
     {
-        SimpleDateFormat dateFormat = new SimpleDateFormat( "yyMMddHHmm" );
+        SimpleDateFormat dateFormat = new SimpleDateFormat( "yyMMddHH" );
         dateFormat.setTimeZone( TimeZone.getTimeZone( "UTC" ) );
         return dateFormat.format( date );
     }
